@@ -1,6 +1,11 @@
 let place = document.querySelector("#location");
 let search = document.querySelector("#search");
 let weather = document.querySelector(".weatherShow");
+let locationName = document.querySelector(".name");
+let temp = document.querySelector(".temp");
+let feels = document.querySelector(".feels");
+let humidity = document.querySelector(".humidity");
+let wind = document.querySelector(".wind");
 
 function weatherShowcase(weatherData) {
   let place = weatherData.location.name;
@@ -20,22 +25,13 @@ async function getWeather() {
   const response = await fetch(newLocation, { mode: "cors" });
   const weatherData = await response.json();
   // json to weather object
-  let weatherObject = weatherShowcase(weatherData);
-  return weatherObject;
+  let weatherInfo = weatherShowcase(weatherData);
+
+  locationName.textContent = `${weatherInfo.place}, ${weatherInfo.placeLocation}`;
+  temp.textContent = `Temperature: ${weatherInfo.temp}°C`;
+  feels.textContent = `Feels Like: ${weatherInfo.feelsLike}°C`;
+  humidity.textContent = `Humidity: ${weatherInfo.humidity}%`;
+  wind.textContent = `Wind: ${weatherInfo.wind} km/h`;
 }
 
-search.addEventListener("click", () => {
-  let weatherInfo = getWeather();
-
-  let name = document.querySelector(".name");
-  let temp = document.querySelector(".temp");
-  let feels = document.querySelector(".feels");
-  let humidity = document.querySelector(".humidity");
-  let wind = document.querySelector(".wind");
-
-  name.textContent = `${weatherInfo.place}, ${weatherInfo.placeLocation}`;
-  temp.textContent = weatherInfo.temp;
-  feels.textContent = weatherInfo.feelsLike;
-  humidity.textContent = weatherInfo.humidity;
-  wind.textContent = weatherInfo.wind;
-});
+search.addEventListener("click", getWeather);
