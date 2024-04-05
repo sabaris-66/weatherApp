@@ -1,5 +1,6 @@
 let place = document.querySelector("#location");
 let search = document.querySelector("#search");
+let weather = document.querySelector(".weatherShow");
 
 function weatherShowcase(weatherData) {
   let place = weatherData.location.name;
@@ -25,5 +26,16 @@ async function getWeather() {
 
 search.addEventListener("click", () => {
   let weatherInfo = getWeather();
-  console.log(weatherInfo);
+
+  let name = document.querySelector(".name");
+  let temp = document.querySelector(".temp");
+  let feels = document.querySelector(".feels");
+  let humidity = document.querySelector(".humidity");
+  let wind = document.querySelector(".wind");
+
+  name.textContent = `${weatherInfo.place}, ${weatherInfo.placeLocation}`;
+  temp.textContent = weatherInfo.temp;
+  feels.textContent = weatherInfo.feelsLike;
+  humidity.textContent = weatherInfo.humidity;
+  wind.textContent = weatherInfo.wind;
 });
