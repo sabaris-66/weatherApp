@@ -6,6 +6,7 @@ let temp = document.querySelector(".temp");
 let feels = document.querySelector(".feels");
 let humidity = document.querySelector(".humidity");
 let wind = document.querySelector(".wind");
+let weatherDetails = document.querySelectorAll(".weatherDetails");
 
 function weatherShowcase(weatherData) {
   let place = weatherData.location.name;
@@ -32,6 +33,12 @@ async function getWeather() {
   feels.textContent = `Feels Like: ${weatherInfo.feelsLike}°C`;
   humidity.textContent = `Humidity: ${weatherInfo.humidity}%`;
   wind.textContent = `Wind: ${weatherInfo.wind} km/h`;
+
+  weather.style.padding = "20px";
+  weather.style.width = "25%";
+  for (const detail of weatherDetails) {
+    detail.style.padding = "15px";
+  }
 }
 
 search.addEventListener("click", getWeather);
