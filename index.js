@@ -35,7 +35,7 @@ async function getWeather() {
   wind.textContent = `Wind: ${weatherInfo.wind} km/h`;
 
   weather.style.padding = "20px";
-  weather.style.width = "25%";
+  weather.style.width = "30vw";
   for (const detail of weatherDetails) {
     detail.style.padding = "15px";
   }
